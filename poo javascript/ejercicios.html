@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-image: url('https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples16.jpeg');
+            /* Ruta de la imagen */
+            background-size: cover;
+            /* Ajusta la imagen para cubrir todo el contenedor */
+            background-position: center;
+            /* Centra la imagen en el contenedor */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .boton {
+            background-color: chartreuse;
+            margin: 2px;
+            border-radius: 5px;
+            border: 0px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            color: brown;
+        }
+
+        .boton:hover {
+            transform: scale(1.2);
+        }
+
+        span {
+            margin-left: 8px;
+            font-weight: 900;
+            font-style: oblique;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: darkorange;
+
+        }
+    </style>
+   
+</head>
+
+<body>
+
+    <div id="container">
+        <h1
+            style="font-weight: 900; font-style: oblique; font-family: Georgia, 'Times New Roman', Times, serif; color: darkorange;">
+            Lista de Tareas</h1>
+        <ul class="task-list">
+            <li class="task" style="display: flex; justify-content: left;">
+                <input type="checkbox">
+                <button class="boton" onclick="desaparecer()">Eliminar Tarea </button> <span ><p class="lista">Completar la tarea 1</p></span>
+            </li>
+            <li class="task" style="display: flex; justify-content: left;">
+                <input type="checkbox">
+                <button class="boton" onclick="desaparece2()">Eliminar Tarea </button> <span class="lista2">Enviar el informe al jefe</span>
+            </li>
+            <li class="task" style="display: flex; justify-content: left;">
+                <input type="checkbox">
+                <button class="boton" onclick="desaparece3()">Eliminar Tarea </button> <span class="lista3">Comprar leche</span>
+            </li>
+            <li class="task" style="display: flex; justify-content: left;">
+                <input type="checkbox">
+                <button class="boton" onclick="desaparece4()">Eliminar Tarea </button> <span class="lista4">Llamar a mamá</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+       
+       var imagenes=document.querySelectorAll("#container .lista");
+       var imagenes2=document.querySelectorAll("#container .lista2");
+       var imagenes3=document.querySelectorAll("#container .lista3");
+       var imagenes4=document.querySelectorAll("#container .lista4");
+            function desaparecer(){
+
+            for(var i=0;i<imagenes.length;i++){
+                imagenes[i].style.visibility="hidden";
+            }
+        
+         
+        }
+
+        function desaparece2(){
+            for(var i=0;i<imagenes2.length;i++){
+                imagenes2[i].style.visibility="hidden";
+            }
+        }
+            function desaparece3(){
+               
+            for(var i=0;i<imagenes3.length;i++){
+                imagenes3[i].style.visibility="hidden";
+            }
+            }
+
+            function desaparece4(){
+                for(var i=0;i<imagenes4.length;i++){
+                imagenes4[i].style.visibility="hidden";
+            }
+            }
+        
+    </script>
+
+</body>
+
+</html>

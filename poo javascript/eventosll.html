@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgba(0, 0, 205, 0.902);
+        }
+
+        #formulario {
+            margin: 3%;
+
+            border: solid 1px gray;
+
+        }
+
+        h5 {
+            position: relative;
+            top: -30px;
+            color: gray;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        #principal{
+
+            margin: 5%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("html").dblclick(function () {
+                alert("ayyy");
+            });
+            $("a").mouseover(function(){
+                  var mensaje="<p> estas pasando por encima del raton</p>";
+                  $("#principal").append(mensaje);
+            });
+            $("#boton").click(function(){
+                 $(this).val("para de hacer click")
+            });
+            $("#campo").focus(function(){
+                 $(this).val("escribe aqui");
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="principal">
+        <h1 style="color: white; text-align: center;">Introduccion a eventos</h1>
+
+        <a id="link" href="#">
+            <h2 style="text-align: start; margin-left: 5%;">Un Link</h2>
+        </a>
+
+        <div id="formulario">
+            <h5>Formulario</h5>
+
+            <input name="button" type="button" id="boton" value="un boton">
+
+            <input name="textfield" type="text" id="campo">
+
+        </div>
+    </div>
+
+    
+
+
+
+</body>
+
+</html>

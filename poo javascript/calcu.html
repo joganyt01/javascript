@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    var repetir;
+    do {
+        function suma(num1, num2) {
+            alert("la suma es " + parseInt(num1 + num2));
+
+
+        }
+
+        function resta(num1, num2) {
+            alert("la resta es " + parseInt(num1 - num2));
+
+
+        }
+
+        function multiplicacion(num1, num2) {
+            alert("la multiplicacion es " + parseInt(num1 * num2));
+
+
+        }
+
+        function division(num1, num2) {
+            alert("la division es " + parseInt(num1 / num2));
+
+
+        }
+
+
+
+        var operacion = prompt("que operacion deseas realizar suma/resta/multiplicacion/division");
+
+        var resultado = parseInt(prompt("ingrese un numero"));
+        var resultado2 = parseInt(prompt("ingrese otro numero"));
+
+        if (operacion == "suma") {
+
+            suma(resultado, resultado2);
+
+        }
+        else if (operacion == "resta") {
+            resta(resultado, resultado2);
+
+        }
+        else if (operacion == "multiplicacion") {
+            multiplicacion(resultado, resultado2);
+
+        }
+        else if (operacion == "division") {
+            division(resultado, resultado2);
+
+        }
+
+
+        repetir = prompt("deseas repetir");
+
+
+    } while (repetir == "si");
+    if (repetir == "no") {
+        alert("gracias por su tiempo");
+    }
+
+
+
+</script>
+
+<body>
+
+    <h1
+        style="font-style: inherit; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: darkorange; font-weight: bold;">
+        la suma de los factores nos da como resultado : <span
+            style="font-size: 28px; font-style: italic; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: blueviolet; font-weight: bold;">
+
+        </span>
+    </h1>
+
+</body>
+
+</html>

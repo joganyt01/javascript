@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" placeholder="texto" id="texto" value="">
+    <input type="number" placeholder="cantidadRepeticiones" id="numerico">
+    <button id="miBoton">ejecutar</button>
+
+
+
+    <script>
+
+        var input = document.getElementById("texto");
+        var historial = ""; // Variable para almacenar el historial de valores
+        let list = [input, historial];
+
+        input.addEventListener("input", function (event) {
+
+            var valor = event.target.value.trim(); // Eliminamos los espacios en blanco al inicio y al final
+
+            // Agregamos la palabra actual al historial
+            historial += valor + "\n";
+
+            console.log(valor + " " + valor);
+            // Imprimimos el historial en la consola
+
+
+
+        });
+        for (let item of list) {
+    item.addEventListener("input", function (event) {
+        var valor = event.target.value.trim(); // Eliminamos los espacios en blanco al inicio y al final
+
+        // Agregamos la palabra actual al historial
+        historial += valor + "\n";
+
+        console.log(valor);
+        
+        // Imprimimos el historial en la consola
+    });
+}
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

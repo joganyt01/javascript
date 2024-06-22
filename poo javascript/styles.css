@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: deeppink;
+}
+
+#tarjeta {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    text-align: center; /* Centra el contenido */
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s; /* Transición al hacer hover */
+}
+
+#boton:hover {
+    transform: scale(1.1); /* Escala el botón al hacer hover */
+}
+
+#mensaje {
+    opacity: 1; /* Cambia la opacidad al mostrar */
+   
+    transition: opacity 2s ease-in-out; /* Transición suave de la opacidad */
+}
+
+.mostrando {
+    opacity: 0; /* Inicia con opacidad 0 */
+   
+    animation: slideIn 2s ease-in-out forwards; /* Animación de entrada */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px); /* Inicia con una traslación hacia arriba */
+    }
+    to {
+        transform: translateY(0); /* Termina sin traslación */
+    }
+}
+
+
+.oculto {
+    display: none;
+}
+
+
+#tarjeta {
+    background-image: url('https://i.pinimg.com/originals/2b/88/43/2b8843cb233d163c90cb9096a0a69bff.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+}
+
+p{
+    font-weight: bold;
+}
+
+#tarjeta h1,
+#tarjeta p,
+#tarjeta button {
+    color: #333; /* Color oscuro para el texto */
+    color: #fff; /* Color del texto */
+    text-shadow: 1px 1px 1px #000; /* Sombra para mejorar la legibilidad */
+    
+}
+
+.oculto {
+    display: none;
+}
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function burbuja() {
+            var lista = [20, 12, 1, 9, -4, 5]; //creamos un array
+            var n, i, k, aux; //declaramos 4 variables
+
+            n = lista.length;// usamos el metodo lenght para que nos devuelva 
+            //la cantidad de elementos de esa matriz
+
+            console.log(lista);// aca mostramos por consola el agoritmo burbuja
+
+            for (k = 1; k < n; k++) {// k es igual a uno eso quiere decir que
+                //si k es menor a n, entonces k in crementara
+                // hasta que la condicion sea falsa
+                for (i = 0; i < (n - k); i++) {// i es igual a 0
+                    // si i es menor a n, menos k entonces este incrementara
+                    if (lista[i] > lista[i + 1]) {//aca estamos 
+                        //llamando alos elementos del array
+                        //en los corchetes metemos la i que vale 0
+                        // es decir que nos llama el 
+                        //el elemento desde cero
+                        aux = lista[i];
+                        lista[i] = lista[i + 1];
+                        lista[i + 1] = aux;
+                    }
+                }
+
+                console.log(lista);//por ultimo usamos el metodo log que nos muestra la
+                //longitud de elementos que tenemos en nuestra lista.
+
+            }
+        }
+        burbuja();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

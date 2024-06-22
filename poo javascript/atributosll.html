@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+     
+        document.getElementById("img").addEventListener("mouseover",mostrar,false);
+        document.getElementById("img").addEventListener("mouseout",remover,false);
+
+    })
+
+    function mostrar(){
+   
+        $("img").attr("src","https://media.es.wired.com/photos/650b2a2e72d73ca3bd5ef0cc/16:9/w_2560%2Cc_limit/Business-OpenAI-Dall-E-3-heart.jpg");
+        
+
+    }
+
+    function remover(){
+   
+      
+        $("img").attr("src","https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg");
+      
+
+    }
+
+    </script>
+</head>
+
+<body>
+
+    <img src="https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg"
+        alt="" id="img" style="width: 30%;">
+
+</body>
+
+</html>

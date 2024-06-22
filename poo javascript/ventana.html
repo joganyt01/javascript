@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cuadro {
+            width: 500px;
+            height: 500px;
+            background-color: lightseagreen;
+             text-align: center;
+             padding: 0.5rem;
+             align-items: center;
+             justify-content: center;
+        }
+
+        #cerrar{
+         width: 50px;
+         height: 50px;
+         background-color: red;
+         text-align: center;
+         color: white;
+         position: relative;
+         left: 450px;
+         top: -1px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: transform 0.3s;
+        }
+
+        #cerrar:hover{
+          transform: scale(1.1);
+
+        }
+
+        
+
+        body{
+      display: flex;
+      justify-content: center;
+      margin: 5%;
+
+        }
+
+        #button{
+        border: transparent;
+        background-color: transparent;
+
+        }
+
+       
+
+        
+    </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        
+       $(document).ready(function(){
+          var a=document.getElementById("cerrar");
+          a.addEventListener("click",remover,false);
+          a.addEventListener("click",reproducirAudio,false);
+         
+            
+
+       });
+
+
+
+        function remover(){
+        $(".cuadro").hide(5000);
+       
+        }
+
+        function reproducirAudio() {
+    var audio = document.getElementById("audio");
+    audio.play(); // Reproduce el audio
+   }
+        
+
+    </script>
+</head>
+
+<body>
+    <div class="cuadro">
+
+        <div id="cerrar"> <div class="letra"><button id="button"> cerrar</button> </div></div>
+
+        <div style="font-size: 24px; font-weight: bold; font-style: italic; font-family: cursive;">  cuadro que representa el cierrre de esto</div>
+
+
+
+    </div>
+
+<audio id="audio" src="cerrar.mp3"></audio>
+
+</body>
+
+</html>

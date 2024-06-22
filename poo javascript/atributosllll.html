@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .img {
+
+            width: 20%;
+            margin: 5px;
+        }
+
+        .container {
+
+            display: flex;
+            justify-content: center;
+            margin-right: 8%;
+            margin-left: 8%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var img = document.querySelectorAll("img");
+
+            for (i = 0; i < img.length; i++) {
+
+                img[i].addEventListener("mouseover", resaltar, false);
+                img[i].addEventListener("mouseout", restaurar, false)
+            }
+
+
+        })
+
+        function resaltar(e) {
+            var zonaActuacion;
+
+            if (e.target == img) {
+
+                zonaActuacion = "#img";
+
+            } else if (e.target == img2) {
+
+                zonaActuacion = "#img2";
+
+            } else if (e.target == img3) {
+
+                zonaActuacion = "#img3";
+
+            } else if (e.target == img4) {
+
+                zonaActuacion = "#img4";
+
+            }
+
+            $(zonaActuacion).attr("src", "https://i.pinimg.com/236x/5b/58/fd/5b58fd3e95437d6f79c2d83b4968e75f.jpg")
+
+
+        }
+
+        function restaurar(e) {
+            if (e.target == img) {
+
+               $("#img").attr("src","primera.jpg");
+
+            } else if (e.target == img2) {
+
+                $("#img2").attr("src","segunda.avif");
+
+            } else if (e.target == img3) {
+
+                $("#img3").attr("src","tercera.jpg");
+
+            } else if (e.target == img4) {
+
+                $("#img4").attr("src","cuarto.jpg");
+
+            }
+
+         
+
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Galeria de imagnes</h1>
+
+    <div class="container">
+
+        <img class="img"
+            src="https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg"
+            alt="" id="img" style="width: 30%;">
+        <img class="img" id="img2"
+            src="https://img.freepik.com/foto-gratis/margarita-amarilla-fresca-sola-flor-cerca-belleza-generada-ia_188544-15543.jpg"
+            alt="">
+        <img class="img" id="img3"
+            src="https://static.vecteezy.com/system/resources/thumbnails/022/645/069/small/illustration-painting-of-love-riding-on-bicycle-generate-ai-photo.jpg"
+            alt="">
+        <img class="img" id="img4" src="https://i.blogs.es/ceda9c/dalle/450_1000.jpg" alt="">
+    </div>
+</body>
+
+</html>

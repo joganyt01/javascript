@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let lista = [3, 5, 1];
+
+// Algoritmo de burbuja
+for (let i = 0; i < lista.length; i++) {
+    for (let k = 0; k < lista.length; k++) {
+        if (lista[i] < lista[k]) {
+            const aux = lista[k]; 
+            lista[k] = lista[i]; 
+            lista[i] = aux;
+        }
+    }
+}
+
+// Imprimir lista ordenada
+console.log("Lista ordenada:", lista);
+
+</script>
+<body>
+    
+</body>
+</html>

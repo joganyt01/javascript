@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenedor1 {
+
+            margin-top: 18%;
+
+        }
+
+        #contenedor2 {
+           margin-left: 20%;
+           margin-bottom: 10%;
+            display: flex;
+            flex-direction: row;
+         
+        }
+
+        ul {
+
+            list-style: none;
+
+        }
+
+        li {
+
+            margin: 10px;
+            font-size: 24px;
+            width: 95px;
+        }
+
+        .destacar {
+
+            background-color: aqua;
+            color: chartreuse;
+        }
+
+        img {
+
+            width: 30%;
+
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+    <script>
+        $(document).ready(function () {
+            var elemento = document.querySelectorAll("li");
+
+            for (var i = 0; i < elemento.length; i++) {
+
+                elemento[i].addEventListener("mouseover", remover, false);
+                elemento[i].addEventListener("mouseout", quitar, false);
+
+
+            }
+
+        });
+
+
+        function remover(e) {
+
+            if (e.target == elem1) {
+
+                $("#elem1").addClass("destacar");
+                $("img").attr("src", "https://www.tooltyp.com/wp-content/uploads/2014/10/1900x920-8-beneficios-de-usar-imagenes-en-nuestros-sitios-web.jpg");
+
+            } else if (e.target == elem2) {
+
+                $("#elem2").addClass("destacar");
+                $("img").attr("src", "https://i.pinimg.com/236x/50/07/ed/5007edd4af49dc476e6dc43b5863aac5.jpg");
+
+            } else if (e.target == elem3) {
+
+                $("#elem3").addClass("destacar");
+                $("img").attr("src", "https://ethic.es/wp-content/uploads/2023/03/imagen.jpg");
+
+            } else if (e.target == elem4) {
+
+                $("#elem4").addClass("destacar");
+                $("img").attr("src", "https://www.lavanguardia.com/andro4all/hero/2023/04/6d8841b6-9d24-457a-95c5-0d3de1d7bf5f.png?width=768&aspect_ratio=16:9&format=nowebp");
+
+            }
+
+        }
+
+        function quitar(e) {
+
+            if (e.target == elem1) {
+
+                $("#elem1").removeClass("destacar");
+                $("img").removeAttr("src");
+
+            } else if (e.target == elem2) {
+
+                $("#elem2").removeClass("destacar");
+                $("img").removeAttr("src");
+
+            } else if (e.target == elem3) {
+
+                $("#elem3").removeClass("destacar");
+                $("img").removeAttr("src");
+
+            } else if (e.target == elem4) {
+
+                $("#elem4").removeClass("destacar");
+                $("img").removeAttr("src");
+
+            }
+
+        }
+
+    </script>
+</head>
+
+<body>
+   
+
+    <div id="contenedor1">
+        <ul>
+            <li id="elem1">imagen 1</li>
+
+            <li id="elem2">imagen 2</li>
+
+            <li id="elem3">imagen 3</li>
+
+            <li id="elem4">imagen 4</li>
+        </ul>
+
+    </div>
+
+    <div id="contenedor2">
+
+        <img src="" alt="">
+    </div>
+
+
+
+</body>
+
+
+
+
+
+</html>

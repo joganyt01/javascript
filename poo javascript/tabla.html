@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .display-flex {
+        display: flex;
+    }
+
+    .justify-content {
+
+        justify-content: space-between;
+    }
+
+    .contenido-tabla {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1em;
+        font-family: sans-serif;
+        min-width: 450px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    }
+
+    .contenido-tabla thead tr {
+        background-color: darkturquoise;
+        color: orange;
+        text-align: middle;
+    }
+
+    .contenido-tabla th,
+    .contenido-tabla td {
+        padding: 12px 15px;
+    }
+
+    .contenido-tabla tbody tr {
+        border-bottom: 1px solid #dddddd;
+
+    }
+
+    .contenido-tabla tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .contenido-tabla tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .button {
+        background-color: orange;
+        border: 0px;
+        border-radius: 5px;
+    }
+
+    .row2 {
+
+
+        position: absolute;
+
+        left: 185px;
+
+
+
+    }
+</style>
+
+<script>
+
+
+
+
+
+
+</script>
+
+<body>
+
+    <table class="contenido-tabla" id="table">
+        <thead>
+        <tbody>
+            <tr class="display-flex justify-content">
+                <th>Nombre</th>
+                <th> Buscar</th>
+            </tr>
+
+            </thead>
+
+            <tr id="fila1">
+                <td> <input name="form" type="text" class="form" id="form"> <input name="edit" type="button"
+                        class="button" id="edit" value="editar"> <input name="eliminar" type="button" class="button"
+                        id="eliminar" value="🗑️">
+                    <input name="agregar" type="button" class="button" id="agregar" value="➕" onclick="cualqui()">
+                </td>
+            </tr>
+            <tr id="fila2">
+                <td> <input name="form1" type="text" class="form" id="form1"> <input name="edit1" type="button"
+                        class="button" id="edit1" value="editar" onclick="edicion()"> <input name="eliminar1"
+                        type="button" class="button" id="eliminar1" value="🗑️"> <input name="agregar1" type="button"
+                        class="button" id="agregar1" value="➕"></td>
+            </tr>
+            <tr>
+                <td> <input name="form2" type="text" class="form" id="form2"> <input name="edit2" type="button"
+                        class="button" id="edit2" value="editar" onclick="edicion()"> <input name="eliminar2"
+                        type="button" class="button" id="eliminar2" value="🗑️"> <input name="agregar2" type="button"
+                        class="button" id="agregar2" value="➕"></td>
+            </tr>
+            <tr>
+                <td> <input name="form3" type="text" class="form" id="form3"> <input name="edit3" type="button"
+                        class="button" id="edit3" value="editar" onclick="edicion()"> <input name="eliminar3"
+                        type="button" class="button" id="eliminar3" value="🗑️"> <input name="agregar3" type="button"
+                        class="button" id="agregar3" value="➕"></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <script>
+
+        var editar = document.getElementById("edit");
+        var editar1 = document.getElementById("edit1");
+
+
+        var deleteout = document.getElementById("eliminar");
+
+        var igree = document.getElementById("agregar");
+
+
+
+        editar.addEventListener("click", edicion, false);
+        editar1.addEventListener("click", edicion, false);
+
+        deleteout.addEventListener("click", delet, false);
+
+        igree.addEventListener("click", agregarFila, false);
+
+        var vacio = "agregue su solicitud";
+        var vacio2 = "agregue su solicitud";
+
+
+
+        function edicion(agregado) {
+
+            if (agregado) {
+                document.getElementById("form").value = vacio;
+
+                vacio = document.getElementById("form").value;
+            }
+            else if (agregado) {
+
+                document.getElementById("form1").value = vacio2;
+
+                vacio2 = document.getElementById("form1").value;
+
+            }
+            
+
+
+
+
+
+            }
+
+            var eliminar = document.getElementById("fila1");
+
+
+            function delet() {
+                if (eliminar) {
+                    eliminar.remove();
+                }
+
+            }
+
+
+
+
+
+
+
+            function agregarFila() {
+                // Obtener el tbody de la tabla
+                var tbody = document.querySelector('#table tbody');
+
+                // Crear una nueva fila
+                var fila = document.createElement('tr');
+
+                // HTML de la fila con las celdas y botones
+                fila.innerHTML = `
+
+            
+            
+            <td class="row"><input name="form" type="text" class="form" id="form"></td>
+            <td class="row2">
+                <input name="edit" type="button" class="button" id="edit" value="editar">
+                <input name="eliminar" type="button" class="button"
+                        id="eliminar" value="🗑️">
+                <input name="agregar" type="button" class="button" id="agregar" value="➕"agregarFilaDespuesSegunda()">
+            </td>
+            
+        `;
+                var segundaFila = tbody.children[0];
+                // Agregar la nueva fila al tbody
+                tbody.insertBefore(fila, segundaFila.nextSibling);
+            }
+
+
+
+
+    </script>
+</body>
+
+</html>

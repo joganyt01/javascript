@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {}
+
+        .display-flex {
+            margin: 5%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+
+        }
+
+
+        .p {
+            width: 25%;
+
+            border: 2px solid red;
+            padding: 10px;
+
+
+        }
+
+        .botones {
+            display: flex;
+
+            justify-content: space-between;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#titulo").css("color","gold");
+            var botones=document.querySelectorAll("input");
+            /*aca arriba estamos convirtiendo la variable botones en un array que encierra 
+            todos los elementos llamdos input de html y aca debajo un for que me repita la condicion
+            */
+
+            for(var i=0;i<botones.length;i++){
+
+              botones[i].addEventListener("click",aumentar,false);
+              botones[i].addEventListener("click",disminuir,false);
+    
+
+            }
+
+          /*  document.getElementById("aumenta1").addEventListener("click", aumentar, false);
+            document.getElementById("disminuye1").addEventListener("click", disminuir, false);
+            document.getElementById("aumenta2").addEventListener("click", aumentar, false);
+            document.getElementById("disminuye2").addEventListener("click", disminuir, false);
+            document.getElementById("aumenta3").addEventListener("click", aumentar, false);
+            document.getElementById("disminuye3").addEventListener("click", disminuir, false);*/
+        });
+
+        function aumentar(e) {
+            var zonaActuacion;
+
+            if (e.target==aumenta1) {
+
+                zonaActuacion = "#noticia1";
+
+            } else if (e.target==aumenta2) {
+                zonaActuacion = "#noticia2";
+
+            } else if (e.target==aumenta3) {
+                zonaActuacion = "#noticia3";
+            }
+
+            var tamdefecto = $(zonaActuacion).css("font-size");
+            //alert(tamdefecto);
+
+            tamdefecto = parseFloat(tamdefecto);
+            $(zonaActuacion).css("font-size", tamdefecto*1.05);
+        }
+
+        function disminuir(e) {
+            var zonaActuacion;
+
+            if (e.target==disminuye1) {
+
+                zonaActuacion = "#noticia1";
+
+            } else if (e.target==disminuye2) {
+                zonaActuacion="#noticia2";
+
+            } else if (e.target==disminuye3) {
+                zonaActuacion="#noticia3";
+            }
+
+            var disminuir=$(zonaActuacion).css("font-size");
+
+            disminuir=parseFloat(disminuir);
+            $(zonaActuacion).css("font-size", disminuir*0.95);
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1 style="font-weight: bold; font-family: cursive; text-align: center;" id="titulo">NOTICIAS</h1>
+
+
+    <div class="display-flex">
+
+        <div class="p" id="noticia1">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
+            texto. Lorem Ipsum ha sido el
+            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+            dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un
+            libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+            documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
+            creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con
+            software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. <table>
+                <tr>
+                    <td style="text-align: center;"><input type="button" value="aumentar" id="aumenta1"></td>
+                    <td style="text-align: right;"> <input type="button" value="disminuir" id="disminuye1"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="p" id="noticia2">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
+            texto. Lorem Ipsum ha sido el
+            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+            dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un
+            libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+            documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
+            creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con
+            software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+            <table>
+                <tr>
+                    <td style="text-align: center;"><input type="button" value="aumentar" id="aumenta2"> </td>
+                    <td style="text-align: right;"> <input type="button" value="disminuir" id="disminuye2"></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="p" id="noticia3"> Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
+            texto. Lorem Ipsum ha sido el
+            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+            dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un
+            libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+            documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
+            creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con
+            software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+            <table>
+                <tr>
+                    <td style="text-align: center;"><input type="button" value="aumentar" id="aumenta3"> </td>
+                    <td style="text-align: right;"> <input type="button" value="disminuir" id="disminuye3"></td>
+                </tr>
+            </table>
+
+        </div>
+</body>
+
+</html>
