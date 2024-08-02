@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
+    table {
+        background-color: greenyellow;
+        width: 15%;
+    }
+</style>
+
+<body>
+
+    <table id="table" border="1">
+        <tr>
+            <td colspan="4" align="center">
+                <input type="text" class="display" id="display" size="25"
+                    style="background-color: darkturquoise; font-family: fantasy; color: crimson;">
+            </td>
+        </tr>
+
+        <tr style="display: flex; justify-content: center;">
+            <td><input type="button" name="1" value="1" id="num1" onclick="oprimir(1)"></td>
+            <td><input type="button" name="2" value="2" id="num2" onclick="oprimir(2)"></td>
+            <td><input type="button" name="3" value="3" id="3" onclick="oprimir(3)"></td>
+
+
+        </tr>
+
+        <tr style="display: flex; justify-content: center;">
+            <td><input type="button" name="4" value="4" onclick="oprimir(4)"></td>
+            <td><input type="button" name="5" value="5" onclick="oprimir(5)"></td>
+            <td><input type="button" name="6" value="6" onclick="oprimir(6)"></td>
+
+        </tr>
+
+        <tr style="display: flex; justify-content: center">
+            <td><input type="button" name="7" value="7" onclick="oprimir(7)"></td>
+            <td><input type="button" name="8" value="8" onclick="oprimir(8)"></td>
+            <td><input type="button" name="9" value="9" onclick="oprimir(9)"></td>
+        </tr>
+
+        <tr style="display: flex; justify-content: center">
+            <td><input type="button" name="0" value="0" onclick="oprimir(0)"></td>
+        </tr>
+
+        <tr style="display: flex; justify-content: center;">
+            <td><input type="button" name="+" value="+" onclick="sumas()"></td>
+            <td><input type="button" name="-" value="-" onclick="resta()"></td>
+            <td><input type="button" name="x" value="x"></td>
+            <td><input type="button" name="/" value="/"></td>
+            <td><input type="button" name="=" value="="></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+    <script>
+        var vacio = "";
+
+        var almacenar = 0;
+
+        var operadores = true;
+
+        var sumar = false;
+
+        var restar = false;
+
+
+
+        function oprimir(event) {
+
+            document.getElementById("display").value = vacio + event;
+
+            vacio = document.getElementById("display").value;
+
+
+        }
+
+        function sumas() {
+            if (restar) {
+                almacenar = almacenar - parseInt(vacio);
+
+                document.getElementById("display").value = almacenar;
+
+
+            } else {
+                almacenar = almacenar + parseInt(vacio);
+                document.getElementById("display").value = almacenar;
+            }
+
+
+            vacio = "";
+
+            restar = false;
+
+            sumar = true;
+
+
+        }
+
+        function resta() {
+            if (sumar) {
+                almacenar = almacenar + parseInt(vacio);
+
+                document.getElementById("display").value = almacenar;
+
+
+            } else {
+                almacenar = almacenar - parseInt(vacio);
+                document.getElementById("display").value = almacenar;
+            }
+
+
+            vacio = "";
+            sumar = false;
+            restar = true;
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
