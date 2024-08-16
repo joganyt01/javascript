@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,77 +10,168 @@
 <style>
     body {
         display: flex;
-        justify-content: center;
+
+
     }
 
+
+
     table {
-        background-color: greenyellow;
-        width: 15%;
+        background: linear-gradient(to bottom, rgb(235, 250, 28), rgb(46, 216, 16));
+        padding: 2vh;
+        width: 30%;
+        border-radius: 8px;
+        border: solid transparent;
+
+    }
+
+    input {
+        padding: 1vh;
+        margin: 5px;
+        font-size: 20px;
+        border-radius: 8px;
+        border: solid transparent;
+
+    }
+
+    .numero {
+        background-color: gray;
+    }
+
+    .simbolos {
+        background-color: blue;
+    }
+
+    .color_display {
+        background-color: aqua;
+    }
+
+    tr {
+        border: 0px solid transparent;
+    }
+
+    .historial {
+
+        border-radius: 8px;
+        border: solid transparent;
+        background: linear-gradient(to bottom, rgb(235, 250, 28), rgb(46, 216, 16));
+        background-color: chartreuse;
+        padding: 2vh;
+
+    }
+
+    .titulo {
+        height: 300px;
+        margin: 20px;
+        background-color: aqua;
+        color: brown;
+        font-family: cursive;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .barra {
+        background-color: white;
+        width: 23%;
+        text-align: center;
+        border: 5px solid rgb(141, 232, 14);
+
+    }
+
+
+
+    textarea::-webkit-scrollbar {
+        width: 2px;
+
+    }
+
+
+    textarea::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
     }
 </style>
 
 <body>
 
-    <table id="table" border="1">
+    <table border="1" style="display: flex; justify-content: center;">
         <tr>
             <td colspan="4" align="center">
-                <input type="text" class="display" id="display" size="25"
-                    style="background-color: darkturquoise; font-family: fantasy; color: crimson;">
+                <input name="display" type="text" class="color_display" id="display" style=" font-family: cursive;
+                font-weight: bold;
+                color: crimson;">
+            </td>
+        </tr>
+        <tr align="center">
+            <td><input name="num1" type="button" class="numero" id="num1" value="1" onclick="oprimir(1)">
+                <input name="num2" type="button" class="numero" id="num2" value="2" onclick="oprimir(2)">
+                <input name="num3" type="button" class="numero" id="num3" value="3" onclick="oprimir(3)">
+            </td>
+
+        </tr>
+        <tr align="center">
+            <td><input name="num4" type="button" class="numero" id="num4" value="4" onclick="oprimir(4)">
+                <input name="num5" type="button" class="numero" id="num5" value="5" onclick="oprimir(5)">
+                <input name="num6" type="button" class="numero" id="num6" value="6" onclick="oprimir(6)">
+            </td>
+
+        </tr>
+        <tr align="center">
+            <td><input name="num7" type="button" class="numero" id="num7" value="7" onclick="oprimir(7)">
+                <input name="num8" type="button" class="numero" id="num8" value="8" onclick="oprimir(8)">
+                <input name="num9" type="button" class="numero" id="num9" value="9" onclick="oprimir(9)">
+            </td>
+
+        </tr>
+        <tr>
+            <td align="center">
+                <input name="button" type="button" class="simbolos" id="button" value="+" onclick="sumas()">
+
+                <input name="button2" type="button" class="simbolos" id="button2" value="-" onclick="resta()">
+
+                <input name="button3" type="button" class="simbolos" id="button3" value="X" onclick="multiplicar()">
+                <input name="button4" type="button" class="simbolos" id="button4" value="/" onclick="dividiendo()">
+                <input name="delete" type="button" class="simbolos" id="Delete" value="Delete" onclick="delet()">
+                <input name="igual" type="button" class="simbolos" id="igual" value="=" onclick="igual()">
+                <input name="igual" type="button" class="simbolos" id="eliminar_ultimo" value="⬅"
+                    onclick="eliminar_ultimo()">
             </td>
         </tr>
 
-        <tr style="display: flex; justify-content: center;">
-            <td><input type="button" name="1" value="1" id="num1" onclick="oprimir(1)"></td>
-            <td><input type="button" name="2" value="2" id="num2" onclick="oprimir(2)"></td>
-            <td><input type="button" name="3" value="3" id="3" onclick="oprimir(3)"></td>
-
-
-        </tr>
-
-        <tr style="display: flex; justify-content: center;">
-            <td><input type="button" name="4" value="4" onclick="oprimir(4)"></td>
-            <td><input type="button" name="5" value="5" onclick="oprimir(5)"></td>
-            <td><input type="button" name="6" value="6" onclick="oprimir(6)"></td>
-
-        </tr>
-
-        <tr style="display: flex; justify-content: center">
-            <td><input type="button" name="7" value="7" onclick="oprimir(7)"></td>
-            <td><input type="button" name="8" value="8" onclick="oprimir(8)"></td>
-            <td><input type="button" name="9" value="9" onclick="oprimir(9)"></td>
-        </tr>
-
-        <tr style="display: flex; justify-content: center">
-            <td><input type="button" name="0" value="0" onclick="oprimir(0)"></td>
-        </tr>
-
-        <tr style="display: flex; justify-content: center;">
-            <td><input type="button" name="+" value="+" onclick="sumas()"></td>
-            <td><input type="button" name="-" value="-" onclick="resta()"></td>
-            <td><input type="button" name="x" value="x"></td>
-            <td><input type="button" name="/" value="/"></td>
-            <td><input type="button" name="=" value="="></td>
-        </tr>
-
-
-
     </table>
+    <div style="background-color: chartreuse;" class="historial">
+        <h4 class="barra">Historial</h4>
+        <textarea name="historial" class="titulo" id="historial"></textarea>
 
 
 
+
+    </div>
 
     <script>
         var vacio = "";
 
         var almacenar = 0;
 
-        var operadores = true;
+        var operadores = false;
+
+        var dividendo = false;
 
         var sumar = false;
 
         var restar = false;
 
+        var display;
 
+        var historiale = [];
+
+        var visible;
+        var otro;
+        var visible1;
+        var visible2;
+        var visible3;
+
+        document.getElementById("igual").addEventListener("click", historial);
 
         function oprimir(event) {
 
@@ -87,50 +179,213 @@
 
             vacio = document.getElementById("display").value;
 
+            otro = vacio;
+
 
         }
 
         function sumas() {
-            if (restar) {
-                almacenar = almacenar - parseInt(vacio);
+            restar = false;
+            operadores = false;
+            dividendo = false;
+            sumar = true;
 
-                document.getElementById("display").value = almacenar;
+            if (vacio == "") {
+                vacio = 0;
+            }
+
+
+            if (restar) {
+                almacenar = parseInt(vacio) - almacenar;
+
 
 
             } else {
                 almacenar = almacenar + parseInt(vacio);
-                document.getElementById("display").value = almacenar;
-            }
 
+            }
+            visible = document.getElementById("display").value = "+" + almacenar;
 
             vacio = "";
 
-            restar = false;
 
-            sumar = true;
+
+
+
 
 
         }
 
         function resta() {
+            sumar = false;
+            operadores = false;
+            dividendo = false;
+            restar = true;
+
+            if (vacio == "") {
+                vacio = 0;
+            }
+
             if (sumar) {
+
                 almacenar = almacenar + parseInt(vacio);
 
-                document.getElementById("display").value = almacenar;
+
 
 
             } else {
-                almacenar = almacenar - parseInt(vacio);
-                document.getElementById("display").value = almacenar;
+                almacenar = parseInt(vacio) - almacenar;
+
             }
+
+            visible1 = document.getElementById("display").value = "-" + almacenar;
 
 
             vacio = "";
-            sumar = false;
-            restar = true;
+
+
+
 
         }
 
+        function multiplicar() {
+            sumar = false;
+            restar = false;
+            dividendo = false;
+            operadores = true;
+
+            if (vacio == "") {
+                vacio = 0;
+            }
+
+            if (operadores) {
+                almacenar = almacenar * parseInt(vacio);
+
+            } else {
+                document.getElementById("display").value = 0;
+
+
+            }
+            visible2 = almacenar = document.getElementById("display").value;
+
+
+            vacio = "";
+
+
+
+
+
+        }
+
+        function dividiendo() {
+            sumar = false;
+            restar = false;
+            operadores = false;
+            dividendo = true;
+
+            if (vacio == "") {
+                vacio = 0;
+            }
+
+            if (dividendo) {
+                almacenar = almacenar / parseInt(vacio);
+
+            } else {
+                document.getElementById("display").value = 0;
+
+
+            }
+            visible3 = almacenar = document.getElementById("display").value;
+
+            vacio = "";
+
+
+
+
+        }
+
+        function delet() {
+            var input = document.getElementById("display");
+
+            if (input) {
+
+                input.value = '';
+                almacenar = 0;
+                vacio = '';
+            }
+
+
+
+        }
+
+        function igual() {
+            console.log("Operador: ", { sumar, restar, operadores, dividendo });
+            console.log("Vacio: ", vacio);
+            console.log("Almacenar: ", almacenar);
+
+            if (vacio == "") {
+                vacio = 0;
+            }
+
+            if (restar) {
+                document.getElementById("display").value = parseInt(vacio) - almacenar;
+              
+            } else if (sumar) {
+                document.getElementById("display").value = almacenar + parseInt(vacio);
+              
+            } else if (operadores) {
+                document.getElementById("display").value = almacenar * parseInt(vacio);
+            } else if (dividendo) {
+                document.getElementById("display").value = almacenar / parseInt(vacio);
+            }
+          
+            almacenar = parseInt(document.getElementById("display").value);
+
+          
+            
+            vacio = "";
+            if (sumar) {
+                historiale.push(otro + visible + "=" + almacenar);
+            } else if (restar) {
+                historiale.push(otro + visible1 + "=" + almacenar);
+            } else if (operadores) {
+                historiale.push(otro + "X" + visible2 + "=" + almacenar);
+            } else if (dividendo) {
+                historiale.push(otro + "/" + visible3 + "=" + almacenar);
+            }
+
+
+
+
+            historial();
+
+        }
+
+        function eliminar_ultimo() {
+            let num = document.getElementById("display");
+
+            if (num) {
+
+                num.value = num.value.slice(0, -1);
+                vacio = num.value;
+
+            }
+
+
+        }
+
+
+
+        function historial() {
+
+
+            document.getElementById("historial").value = historiale.join("\n");
+
+
+
+
+
+        }
 
 
 
@@ -140,6 +395,11 @@
 
 
 
+
+
+
+
+
 </body>
 
-</html>
+
