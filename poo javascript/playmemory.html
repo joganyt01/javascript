@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cartas Emparejadas</title>
+    <link rel="shortcut icon" href="frutas.ico" type="image/x-icon">
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(to right, pink, purple);
+        margin-right: 35%;
+        margin-left: 35%;
+        text-align: center;
+
+
+    }
+
+    #wraper {
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+
+    }
+
+    #game {
+        height: 90vh;
+        max-height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #stats {
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: cursive;
+
+    }
+
+    #gamesplayed {
+        color: white;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: cursive;
+    }
+
+    #button {
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: cursive;
+
+    }
+
+    #circulo {
+        margin-top: 5px;
+        margin-left: 40%;
+        display: flex;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        padding: 1rem;
+        background: linear-gradient(to right, 
+                rgba(255, 0, 0, 1) 0%,  /* Blanco semitransparente al inicio */
+                rgba(255, 0, 0, 1) 50%,       /* Rojo completo en el medio */
+                rgba(255, 255, 255, 0.5) 100% /* Blanco semitransparente al final */
+            );
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+            /* Sombra más clara */
+            0 15px 15px rgba(0, 0, 0, 0.2);
+        /* Sombra más oscura */
+        transition: transform 0.2s, box-shadow 0.2s;
+        /* Transiciones suaves */
+        cursor: pointer;
+        /* Cambia el cursor al pasar sobre el botón */
+      
+    }
+
+    #circulo:hover {
+        transform: translateY(-4px);
+        /* Levanta el botón */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3),
+            /* Aumenta la sombra */
+            0 20px 20px rgba(0, 0, 0, 0.2);
+        /* Aumenta la sombra */
+    }
+
+    .card {
+        width: 50px;
+        height: 70px;
+        margin: 1rem;
+        position: relative;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+
+    }
+
+    .card.active {
+        transform: rotateY(180deg);
+    }
+
+    .card div {
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        backface-visibility: hidden;
+        pointer-events: none;
+
+    }
+
+    .card .face {
+        background: cyan;
+        transform: rotateY(180deg);
+        color: white;
+        font-size: 1rem;
+        font-family: cursive;
+
+    }
+
+    .card .back {
+
+        background: url("https://img.freepik.com/foto-gratis/marco-vista-superior-frutas_23-2148526511.jpg")center / contain no-repeat;
+
+    }
+
+    .back {
+        font-size: 25px;
+        font-weight: bold;
+        font-family: cursive;
+        color: black;
+
+    }
+
+    img {
+        width: 50px;
+        height: 70px;
+        margin: 1rem;
+        border-radius: 1rem;
+    }
+
+    .head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    .border {
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    p {
+        color: lime;
+        font-size: 25px;
+        font-family: cursive;
+        font-weight: bold;
+        padding: 1px;
+    }
+
+    b {
+        font-size: 20px;
+        padding: 1px;
+        font-family: cursive;
+        font-weight: bold;
+        color: aqua;
+
+    }
+
+    .emoji {
+        width: 50px;
+        /* Ajusta el tamaño según tus necesidades */
+        height: 50px;
+    }
+</style>
+
+<body>
+
+    <div class="head">
+
+        <div class="border">
+            <p>Cartas <b>Emparejadas</b> </p>
+        </div>
+    </div>
+
+    <div id="stats">0 intentos</div>
+    <div id="gamesplayed">0 Juegos Jugados</div>
+    <div id="circulo">
+        <div id="button">Reiniciar</div>
+    </div>
+
+    <div id="wraper">
+        <div id="game">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+
+        //constante donde doy el total de cartas
+        const totalcards = 16;
+        //array donde voy a guardar todas mis cartas
+        let cards = [];
+        //array donde voy a seleccionar todas mis cartas
+        let selectedcards = [];
+        //array donde va el valor de cada de carta
+        //en este caso imagenes
+        let valuesused = [];
+        //contador de moviento actual
+        let currentmove = 0;
+        //contador de intentos actuales
+        let currentattempts = 0;
+        //contador de todos los juegos jugados
+        let GamesPlayed = 0;
+
+        let MatchCards = 0;
+
+        //constante imagenes donde guardo todas mis imagenes en forma de array 
+        const images = ["<img src='banano.png'>", "<img src='fresas.png'>", "<img src='cerezas.png'>", "<img src='moras.png'>", "<img src='naranjas.png'>", "<img src='manzanas.jpg'>", "<img src='peras.png'>", "<img src='sandia.jpg'>"];
+
+        let cardtemplate = '<div class="card"><div class="back"> </div><div class="face"></div></div>';
+        //creo una funcion que va hacer la responsable de desendecadenar la accion cuando el jugado haga click en una carta
+        //  con un parametro llamado e que va hacer el evento de la funcion
+        function activate(e) {
+            //si currentmove osea el movimiento actual es menor a dos cartas  entonces se cumple la siguiente condicion
+            if (currentmove < 2) {
+                //si no selecciono ninguna carta(esto lo hago con el signo ! que me voltea el array
+                //)comparo si ya tengo una carta seleccionada y con e.target verifico si
+                //ya esta clickeada y si es diferente ala que ya selecciono esto evita que 
+                //seleccione dos veces la misma carta, esta parte comprueba si la carta seleccionada
+                //no tiene la clase active, si l clase esta activa(girada 180deg), no se puede selecci
+                //nuevamente (clickear)                    
+                if ((!selectedcards[0] || selectedcards[0] !== e.target) && !e.target.classList.contains('active')) {
+                    //si todo lo de arriba se cumple se añade la clase active girandola y mostrando su
+                    //cara
+                    e.target.classList.add('active');
+                    //luego se le añade la carta clickeada al array selectedcards
+                    selectedcards.push(e.target);
+                    //si currentmove(movimiento actual) incrementa y es igual a 2 enotnces se actualiza el contador 
+                    if (++currentmove == 2) {
+                        //entonces currenttatemps(intentos actuales)ira incrementando 
+                        currentattempts++;
+
+
+                        //actualizo llamando al id stats y modificando su valor con inner html con la variable
+                        //currenttaempsts(intentos actuales) esto hara que me muestre por pantalla 
+                        //toidos los intentos que llevo hasta ahora cad vez que selecciono dos cartas
+                        document.querySelector('#stats').innerHTML = currentattempts + ' intentos ';
+                        //si las cartas seleccionadas en el array selected cards y en la clase 
+                        //face(nodelist) osea la cara de la carta en la posicion 1 y con ayuda de inner html
+                        //accedemos al contenido son iguales al array selectedcards en la posicion 2
+                        //y la clase face en la posicion 1 las cartas estan emparejdas 
+                        if (selectedcards[0].querySelectorAll('.face')[0].innerHTML == selectedcards[1].querySelectorAll('.face')[0].innerHTML) {
+                            MatchCards += 2;
+
+                            //entonces segun eso se limpia el array selected cards
+                            selectedcards = [];
+                            //y se reinicia el contador currentmove
+                            currentmove = 0;
+                            // Verifica si todas las cartas están activas (emparejadas)
+                            if (MatchCards === totalcards) {
+                                GamesPlayed++;
+                                document.getElementById('gamesplayed').innerHTML = GamesPlayed + " Juegos Jugados ";
+                            }
+                        }
+                        //pero si no entonces
+                        else {
+                            //con settimeout establecemos un temporizador en milisegundos si no son iguales
+                            setTimeout(() => {
+                                //el array selectedcards en la poscion 1 removiendo la clase active es igual al
+                                selectedcards[0].classList.remove('active');
+                                //selectedcards en la posicion 2 removiendo tambien la clase active
+                                selectedcards[1].classList.remove('active');
+                                //y limpiamos el array selectedcards
+                                selectedcards = [];
+                                //y reiniciamos el contador
+                                currentmove = 0;
+                                //esto con el fin de que al volver a seleccionar las otras cartas no se
+                                //acumule el valor de del array y del contador
+                                //y se le temporizan 600 milisegundos que es lo que tarda en voltear
+                                //la otra carta seleccionada
+                            }, 600);
+                        }
+                    }
+
+                }
+            }
+
+        }
+        //funcion para generarar cartas aleatorimente
+        function randomvalue() {
+            // creo la variable rdn para calcular con mathfloor entre 0 y la mitad de un numero decimal
+            let rnd = Math.floor(Math.random() * totalcards * 0.5);
+            let values = valuesused.filter(value => value === rnd);
+            if (values.length < 2) {
+                valuesused.push(rnd);
+            }
+            else {
+                randomvalue();
+            }
+        }//creo una funcion para obtener el valor de la carta con el parametro value
+        function getfacevalue(value) {
+            //actualizo el valor de la variable rtn con el valor value
+            let rtn = value;
+            //si el valor de value es menor que la longitud del array images 
+            if (value < images.length) {
+                //entonces actualizo el valor rtn, y le asigno lo que tengo en images en la posicion value
+                rtn = images[value];
+            }
+            //retorno lo que tengo en rtn es decir 
+            return rtn;
+        }
+        //itero sobre el total de cartas
+        for (let i = 0; i < totalcards; i++) {
+            //creo un div con create element en cada iteracion se crea un elemento del div
+            let div = document.createElement('div');
+            //inyecto el contenido de mi cardtemplate osea que en cada div tengo la estrutura de la carta
+            div.innerHTML = cardtemplate;
+            //luego con ayuda del push agrego el div al array cards
+            cards.push(div);
+            //ahora apunto con query selector al id game  se le añade con append al elemento padre es decir, se añade como hijo de ese elemento
+            //que seria cards
+            document.querySelector('#game').append(cards[i]);
+            //llamamos ala funcion randomvalue para que nos genere las cartas aleatoriamente en cada posicion es decir que cada vez que jugamos
+            //un nuevo juego las imagenes aprezcan en diferentes posiciones de las cartas
+            randomvalue();
+            //ahora tomo desde la posicion 1 cards con ayuda de i para que itere sobre cada posicion del array y con queryslector apunto
+            //ala clase face y accedemos ala lista de cartas de la clase desde la posicion 1 y con inner html le asigno get facevalue osea el valor de las cartas que en este caso soon las imagenes
+            //y dentro de la funcion getfacevalue meto la variable values used en la posicion i que hara que me itere en todas las cartas un valor aleatorio
+            cards[i].querySelectorAll('.face')[0].innerHTML = getfacevalue(valuesused[i]);
+            cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
+
+
+
+        }
+
+        function reboot() {
+            // limpio los array
+            cards = [];
+            selectedcards = [];
+            valuesused = [];
+            //reinicio los contadores
+            currentmove = 0;
+            currentattempts = 0;
+            MatchCards = 0;
+
+            // creo una constante y le asigno el id game
+            const gameElement = document.querySelector('#game');
+            // accedemos al primer hijo de game element que en este caso
+            //seria el primer div de la carta y gracias a while este ira recorriendo
+            //desde que hayan hijos de gameelement
+            while (gameElement.firstChild) {
+                //entonces si se cumple lo anterior aplicamos este metodo
+                //que se usa para eliminar un hijo de gamelement
+                //y luego dentro de los parentesis se pasa como argumento el primer
+                //hijo de game element osea se le especifica que es el primer hijo 
+                //de gameelement, osea que estamos eliminando un hijo en cada iteracion del bucle
+                gameElement.removeChild(gameElement.firstChild);
+            }
+
+            //creo un for para generar las cartas una vez que ya han sido borradas
+            //esto con el fin de que cada vez que yo le de el boton reiniciar
+            //y se borren todas las cartas se vuelvan generar como nuevas
+            for (let i = 0; i < totalcards; i++) {
+                let div = document.createElement('div');
+                div.innerHTML = cardtemplate;
+                cards.push(div);
+                gameElement.append(cards[i]);
+                randomvalue();
+                cards[i].querySelectorAll('.face')[0].innerHTML = getfacevalue(valuesused[i]);
+                cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
+            }
+
+
+        }
+        //creo un evento que me diga que al momento de dar click
+        //se desencadenara la funcion reboot
+        document.getElementById('circulo').addEventListener("click", reboot);
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background: linear-gradient(to right, pink, purple);
+    }
+
+    .body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10%;
+
+    }
+
+    .contenedor {
+        display: grid;
+        grid-template-columns: repeat(4, 8vh);
+        grid-template-rows: repeat(4, 8vh);
+        gap: 10px;
+
+
+
+    }
+
+    .tarjetas {
+        background-color: cyan;
+        margin: 1px;
+        width: 5%;
+        min-width: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 5px;
+        font-family: cursive;
+
+    }
+
+    .head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    .border {
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    p {
+        color: lime;
+        font-size: 30px;
+        font-family: cursive;
+        font-weight: bold;
+        padding: 1px;
+    }
+
+    b {
+        font-size: 25px;
+        padding: 1px;
+        font-family: cursive;
+        font-weight: bold;
+        color: aqua;
+
+    }
+
+    img {
+        width: 47px;
+        border-radius: 5px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-top: 4%;
+        color: aqua;
+        font-family: cursive;
+        font-size: 25px;
+    }
+</style>
+
+
+<body>
+    <div class="head">
+
+
+        <div class="border">
+            <p>Cartas <b>Emparejadas</b> </p>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="contenedor">
+
+            <div class="tarjetas" id="card1">a</div>
+            <div class="tarjetas" id="card2">a</div>
+            <div class="tarjetas" id="card3">a</div>
+            <div class="tarjetas" id="card4">a</div>
+            <div class="tarjetas" id="card5">a</div>
+            <div class="tarjetas" id="card6">a</div>
+            <div class="tarjetas" id="card7">a</div>
+            <div class="tarjetas" id="card8">a</div>
+            <div class="tarjetas" id="card9">a</div>
+            <div class="tarjetas" id="card10">a</div>
+            <div class="tarjetas" id="card11">a</div>
+            <div class="tarjetas" id="card12">a</div>
+            <div class="tarjetas" id="card13">a</div>
+            <div class="tarjetas" id="card14">a</div>
+            <div class="tarjetas" id="card15">a</div>
+            <div class="tarjetas" id="card16">a</div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div id="emparejados">
+
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let contenedores = document.getElementsByClassName("tarjetas");
+    let boton = document.getElementById("card1");
+    let boton2 = document.getElementById("card2");
+    let boton3 = document.getElementById("card3");
+    let boton4 = document.getElementById("card4");
+    let boton5 = document.getElementById("card5");
+    let boton6 = document.getElementById("card6");
+    let boton7 = document.getElementById("card7");
+    let boton8 = document.getElementById("card8");
+    let boton9 = document.getElementById("card9");
+    let boton10 = document.getElementById("card10");
+    let boton11 = document.getElementById("card11");
+    let boton12 = document.getElementById("card12");
+    let boton13 = document.getElementById("card13");
+    let boton14 = document.getElementById("card14");
+    let boton15 = document.getElementById("card15");
+    let boton16 = document.getElementById("card15");
+    let carta = null;
+
+    const imagenes = {
+        'banano1': 'https://illustoon.com/photo/2602.png',
+        'banano2': 'https://illustoon.com/photo/2602.png'
+    };
+
+    for (let i = 0; i < contenedores.length; i++) {
+        contenedores[i].addEventListener("click", juego);
+    }
+
+    function juego(event) {
+           boton=event.currentTarget;
+          
+        if (carta == null) {
+            boton.innerHTML = "<img src='https://illustoon.com/photo/2602.png'>";
+            boton2.innerHTML="<img src='https://img.lovepik.com/free-png/20210922/lovepik-cartoon-creative-fruit-strawberry-illustration-png-image_401140059_wh1200.png'>";
+            carta = boton;
+        } else {
+            boton6.innerHTML = "<img src='https://illustoon.com/photo/2602.png'>";
+            boton7.innerHTML="<img src='https://img.lovepik.com/free-png/20210922/lovepik-cartoon-creative-fruit-strawberry-illustration-png-image_401140059_wh1200.png'>";
+        }
+        
+        
+        
+        
+        
+
+    }
+
+    function determinarganador() {
+        const reglas = {
+            'banano1': 'banano2',
+        }
+        if (reglas) {
+            document.getElementById("emparejados").innerText = "Emparejados";
+        }
+
+    }
+
+    function juga() {
+
+    }
+
+
+</script>
+
+</html>

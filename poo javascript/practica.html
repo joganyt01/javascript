@@ -125,16 +125,14 @@
         </tr>
         <tr>
             <td align="center">
-                <input name="button" type="button" class="simbolos" id="button" value="+" onclick="sumas()">
-
-                <input name="button2" type="button" class="simbolos" id="button2" value="-" onclick="resta()">
-
-                <input name="button3" type="button" class="simbolos" id="button3" value="X" onclick="multiplicar()">
-                <input name="button4" type="button" class="simbolos" id="button4" value="/" onclick="dividiendo()">
-                <input name="delete" type="button" class="simbolos" id="Delete" value="Delete" onclick="delet()">
-                <input name="igual" type="button" class="simbolos" id="igual" value="=" onclick="igual()">
+                <input name="button" type="button" class="simbolos" id="button" value="+" onclick="operation('+')">
+                <input name="button2" type="button" class="simbolos" id="button2" value="-" onclick="operation('-')">
+                <input name="button3" type="button" class="simbolos" id="button3" value="X" onclick="operation('X')">
+                <input name="button4" type="button" class="simbolos" id="button4" value="/" onclick="operation('/')">
+                <input name="delete" type="button" class="simbolos" id="Delete" value="Delete" onclick="reset()">
+                <input name="igual" type="button" class="simbolos" id="igual" value="=" onclick="equal()">
                 <input name="igual" type="button" class="simbolos" id="eliminar_ultimo" value="⬅"
-                    onclick="eliminar_ultimo()">
+                    onclick="deleteLast()">
             </td>
         </tr>
 
@@ -149,246 +147,89 @@
     </div>
 
     <script>
-        var vacio = "";
+        let input = '';
+        let operator = '';
+        let firstNumber = '';
+        let historiale = '';
+        let array = [];
+        //creo un parametro en la funcion oprimir
+        function oprimir(num) {
+            //concateno el valor del input que en este caso es un string vacio    
+            input += num;
+            //actualizo el valor de entrada del input en el display
+            document.getElementById('display').value = input;
+        }
 
-        var almacenar = 0;
+        function operation(op) {
+            //si el input es igual a vacio string no retornara, no se hara ninguna operacion
+            //si firts es diferente a vacio entonces se llama ala funcion igual
+            if (firstNumber != '') {
+                equal();
+            }
+            //obtengo el operador con el parametro op
+            operator = op;
+            //obtengo el numero con la variable input
+            firstNumber = input;
+            //reseteo el input 
+            input = '';
+            //reseteo el valor de entrada 
+            document.getElementById('display').value = '';
+        }//creo una funcion para limpiar los valores del input
+        function reset() {
+            //reseteo el input 
+            input = "";
+            //reseteo el ultimo numero
+            firstNumber = "";
+            //reseteo el operador
+            operator = ""
+            //actulizo por pantalla
+            document.getElementById("display").value = "";
+        }
+           //creo una funcion para eliminar el ultimo numero
+        function deleteLast() {
+            //con ayuda del metodo slice elimino el ultimo numero
+            //osea toma todos los caracteres del input desde
+            //el inicio (0) hasta el penultimo caracter
+            input = input.slice(0, -1);
+            //mostramos por pantalla el input 
+            document.getElementById("display").value = input;
+        }
+           //creamos una funcion que sera el igual de la calculadora
+        function equal() {
+            //creamos dos variables y las parseamos y almacenamos
+            //el firstnumber y el input
+            let num1 = parseFloat(firstNumber);
+            let num2 = parseFloat(input);
+            //insertamos un if para que me encadene todas las operaciones
+            //con la variable operador y con ayuda del operador ==
+            //comparamos a todos los signos "+-x/"
+            if (operator == '+') {
+                input = num1 + num2;
+                historiale = document.getElementById("display").value=num2;
+            } else if (operator == '-') {
+                input = num1 - num2;
+                historiale = document.getElementById("display").value=num2;
+            } else if (operator == 'X') {
+                input = num1 * num2;
+                historiale = document.getElementById("display").value=num2;
+            } else if (operator == '/') {
+                input = num1 / num2;
+                historiale = document.getElementById("display").value=num2;
+            }
+           let resultado=document.getElementById("display").value = input;
 
-        var operadores = false;
 
-        var dividendo = false;
-
-        var sumar = false;
-
-        var restar = false;
-
-        var display;
-
-        var historiale = [];
-
-        var visible;
-        var otro;
-        var visible1;
-        var visible2;
-        var visible3;
-
-        document.getElementById("igual").addEventListener("click", historial);
-
-        function oprimir(event) {
-
-            document.getElementById("display").value = vacio + event;
-
-            vacio = document.getElementById("display").value;
-
-            otro = vacio;
-
+            array.push(firstNumber + operator+historiale+'='+resultado);
+            firstNumber = "";
+            operator = "";
 
         }
 
-        function sumas() {
-            restar = false;
-            operadores = false;
-            dividendo = false;
-            sumar = true;
-
-            if (vacio == "") {
-                vacio = 0;
-            }
-
-
-            if (restar) {
-                almacenar = parseInt(vacio) - almacenar;
-
-
-
-            } else {
-                almacenar = almacenar + parseInt(vacio);
-
-            }
-            visible = document.getElementById("display").value = "+" + almacenar;
-
-            vacio = "";
-
-
-
-
-
-
-
-        }
-
-        function resta() {
-            sumar = false;
-            operadores = false;
-            dividendo = false;
-            restar = true;
-
-            if (vacio == "") {
-                vacio = 0;
-            }
-
-            if (sumar) {
-
-                almacenar = almacenar + parseInt(vacio);
-
-
-
-
-            } else {
-                almacenar = parseInt(vacio) - almacenar;
-
-            }
-
-            visible1 = document.getElementById("display").value = "-" + almacenar;
-
-
-            vacio = "";
-
-
-
-
-        }
-
-        function multiplicar() {
-            sumar = false;
-            restar = false;
-            dividendo = false;
-            operadores = true;
-
-            if (vacio == "") {
-                vacio = 0;
-            }
-
-            if (operadores) {
-                almacenar = almacenar * parseInt(vacio);
-
-            } else {
-                document.getElementById("display").value = 0;
-
-
-            }
-            visible2 = almacenar = document.getElementById("display").value;
-
-
-            vacio = "";
-
-
-
-
-
-        }
-
-        function dividiendo() {
-            sumar = false;
-            restar = false;
-            operadores = false;
-            dividendo = true;
-
-            if (vacio == "") {
-                vacio = 0;
-            }
-
-            if (dividendo) {
-                almacenar = almacenar / parseInt(vacio);
-
-            } else {
-                document.getElementById("display").value = 0;
-
-
-            }
-            visible3 = almacenar = document.getElementById("display").value;
-
-            vacio = "";
-
-
-
-
-        }
-
-        function delet() {
-            var input = document.getElementById("display");
-
-            if (input) {
-
-                input.value = '';
-                almacenar = 0;
-                vacio = '';
-            }
-
-
-
-        }
-
-        function igual() {
-            console.log("Operador: ", { sumar, restar, operadores, dividendo });
-            console.log("Vacio: ", vacio);
-            console.log("Almacenar: ", almacenar);
-
-            if (vacio == "") {
-                vacio = 0;
-            }
-
-            if (restar) {
-                document.getElementById("display").value = parseInt(vacio) - almacenar;
-              
-            } else if (sumar) {
-                document.getElementById("display").value = almacenar + parseInt(vacio);
-              
-            } else if (operadores) {
-                document.getElementById("display").value = almacenar * parseInt(vacio);
-            } else if (dividendo) {
-                document.getElementById("display").value = almacenar / parseInt(vacio);
-            }
-          
-            almacenar = parseInt(document.getElementById("display").value);
-
-          
-            
-            vacio = "";
-            if (sumar) {
-                historiale.push(otro + visible + "=" + almacenar);
-            } else if (restar) {
-                historiale.push(otro + visible1 + "=" + almacenar);
-            } else if (operadores) {
-                historiale.push(otro + "X" + visible2 + "=" + almacenar);
-            } else if (dividendo) {
-                historiale.push(otro + "/" + visible3 + "=" + almacenar);
-            }
-
-
-
-
-            historial();
-
-        }
-
-        function eliminar_ultimo() {
-            let num = document.getElementById("display");
-
-            if (num) {
-
-                num.value = num.value.slice(0, -1);
-                vacio = num.value;
-
-            }
-
-
-        }
-
-
-
+        document.getElementById("igual").addEventListener("click", historial)
         function historial() {
 
-
-            document.getElementById("historial").value = historiale.join("\n");
-
-
-
-
-
+            document.getElementById("historial").value = array.join('\n');
         }
-
-
-
 
     </script>
 
