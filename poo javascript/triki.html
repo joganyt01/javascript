@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: auto;
+    }
+
+    body {
+        text-align: center;
+    }
+
+    .table {
+        background: chocolate;
+        padding: 2vh;
+
+
+
+    }
+
+    .contenedor {
+
+        background: black;
+        padding: 5vh;
+        margin: 5px;
+        font-size: 20px;
+        color: red;
+
+
+
+
+    }
+
+    .letrero {
+        text-align: center;
+        background: linear-gradient(to bottom, red, green);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 2vh;
+        margin: 5px;
+        border: 0px;
+        color: darkorange;
+    }
+</style>
+
+<body>
+    <textarea name="resultado" id="resultado" class="letrero" readonly></textarea>
+
+    <table class="table" id="table">
+        <tr>
+            <td style="display: flex;">
+                <input type="button" id="cubo1" class="contenedor" value="">
+                <input type="button" id="cubo2" class="contenedor" value="">
+                <input type="button" id="cubo3" class="contenedor" value="">
+            </td>
+        </tr>
+        <tr>
+            <td style="display: flex;">
+                <input type="button" id="cubo4" class="contenedor" value="">
+                <input type="button" id="cubo5" class="contenedor" value="">
+                <input type="button" id="cubo6" class="contenedor" value="">
+            </td>
+        </tr>
+        <tr>
+            <td style="display: flex;">
+                <input type="button" id="cubo7" class="contenedor" value="">
+                <input type="button" id="cubo8" class="contenedor" value="">
+                <input type="button" id="cubo9" class="contenedor" value="">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+        let jugador = true;
+        let contenedores = document.getElementsByClassName("contenedor");
+
+        let juegosJugados = 0;
+        let victorias = 0;
+        let empates = 0;
+        let derrotas = 0;
+
+        for (let i = 0; i < contenedores.length; i++) {
+           console.log(contenedores[i].addEventListener('click', movimiento)) ;
+
+        }
+
+        function movimiento(e) {
+
+            let contenedorValue = e.target.value;
+            if (!contenedorValue.length) {
+                e.target.value = jugador ? 'X' : 'O';
+               console.log(jugador = !jugador) ;
+
+                checkline(0, 1, 2);
+                checkline(3, 4, 5);
+                checkline(6, 7, 8);
+                checkline(0, 3, 6);
+                checkline(1, 4, 7);
+                checkline(2, 5, 8);
+                checkline(0, 4, 8);
+                checkline(6, 4, 2);
+
+
+
+
+            }
+
+
+        }
+
+        function checkline(c1, c2, c3) {
+            if (contenedores[c1].value.length &&
+                contenedores[c1].value == contenedores[c2].value &&
+                contenedores[c2].value == contenedores[c3].value
+
+            ) {
+                ganador(contenedores[c1].value);
+            }
+        }
+
+        function ganador(player) {
+            document.querySelector("#resultado").value = player + " Ganador!! ";
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

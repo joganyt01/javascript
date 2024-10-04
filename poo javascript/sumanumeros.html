@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        let numero = prompt("Ingresa un número entero:");
+
+        // Inicializar la suma en 0
+        let sumaDigitos = 0;
+
+        // Iterar sobre cada carácter en la cadena
+        for (let i = 0; i < numero.length; i++) {
+            // si paso un string en nan este me dira que es nan porque no es un numero
+            //de ahi su nombre es Isnan y con el operador ! lo que hago es voltear el isnan es
+            // decir que cuando yo ingrese un numero este me dira que es nan porque
+            //no es un caracter, en este caso se utiliza porque numero es un string
+            //entonces tenemos que hacer que se voltie ese string con el operador ! y 
+            //isnan
+            if (!isNaN(numero[i])) {
+                //entonces aqui sumo sumadigitos y ala misma vez
+                //le digo que suma deigitos es igual a parseint(numero[i]);
+                sumaDigitos += parseInt(numero[i]);
+            }
+        }
+
+        // Mostrar el resultado
+        alert(" La suma de los dígitos es: " + sumaDigitos);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

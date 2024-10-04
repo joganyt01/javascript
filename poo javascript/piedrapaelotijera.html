@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .manos {
+        background-color: transparent;
+        padding: 2vh;
+        margin: 4px;
+        font-size: 40px;
+
+    }
+
+    .opciones {
+        background: linear-gradient(to bottom, red, yellow);
+        margin: 5px;
+        border-radius: 50%;
+        padding: 2vh;
+        width: 50px;
+        font-size: 50px;
+
+    }
+
+    .ganador {
+        background-color: darkorange;
+        padding: 2vh;
+        margin: 5px;
+        font-size: 40px;
+    }
+
+    body {
+        background: linear-gradient(to right, purple, green);
+    }
+
+    .contador {
+        font-weight: bold;
+        font-size: 15px;
+        color: darkorange;
+        font-family: cursive;
+    }
+</style>
+
+<body>
+    <div class="container" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div id="mano" class="manos"><img src="https://www.gifss.com/cuerpo-humano/manos/images/mano-6.gif" alt="">
+        </div>
+
+
+        <div id="mano2" class="manos"><img src="https://i.gifer.com/3nRF.gif" alt=""></div>
+
+
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="ganador" id="resultado"></div>
+    </div>
+
+    <div class="contenedor" style="display: flex; justify-content: center;">
+        <img src="piedra.gif" alt="" id="piedra" class="opciones">
+        <img src="papel.gif" alt="" id="papel" class="opciones">
+        <img src="tijeras.gif" alt="" id="tijera" class="opciones">
+        <img src="https://static.wixstatic.com/media/d9a3ee_1fb099bb287e4b5d8783cc39d0e69906~mv2.gif" alt="" id="return"
+            class="opciones" >
+
+    </div>
+    <div id="contador" class="contador">
+        <p>Juegos Jugados: <span id="juegos-jugados">0</span></p>
+        <p>Victorias: <span id="victorias">0</span></p>
+        <p>Empates: <span id="empates">0</span></p>
+        <p>Derrotas: <span id="derrotas">0</span></p>
+    </div>
+
+
+    <script>
+        // Obtener los elementos del DOM
+        let piedraBtn = document.getElementById("piedra");
+        let papelBtn = document.getElementById("papel");
+        let tijeraBtn = document.getElementById("tijera");
+        let retornoBtn = document.getElementById("return");
+        let mano = document.getElementById("mano");
+        let mano2 = document.getElementById("mano2");
+        let resultadoDiv = document.getElementById("resultado");
+
+        // Contadores
+        let juegosJugados = 0;
+        let victorias = 0;
+        let empates = 0;
+        let derrotas = 0;
+
+        // Opciones de imágenes para cada elección
+        const imagenes = {
+            'piedra': 'https://media.tenor.com/zECtXyx1EIoAAAAM/k-pav%C3%A9.gif',
+            'papel': 'https://i.gifer.com/NbAC.gif',
+            'tijera': 'https://hips.hearstapps.com/es.h-cdn.co/fotoes/images/media/imagenes/recursos/mtm0odgynjy3odu3ndk2mdc0/87084813-1-esl-ES/MTM0ODgyNjY3ODU3NDk2MDc0.gif'
+        };
+
+        // Función para que la máquina seleccione aleatoriamente
+        function maquinaSeleccion() {
+            const opciones = ['piedra', 'papel', 'tijera'];
+            const index = Math.floor(Math.random() * opciones.length);
+            return opciones[index];
+        }
+
+        // Función para mostrar la selección en la interfaz
+        function mostrarSeleccion(id, eleccion) {
+            document.getElementById(id).innerHTML = `<img src="${imagenes[eleccion]}" alt="${eleccion}">`;
+        }
+
+        // Función para determinar el resultado del juego
+        function determinarGanador(eleccionJugador, eleccionMaquina) {
+            if (eleccionJugador === eleccionMaquina) {
+                empates++;
+                return "Empate";
+            }
+            const reglas = {
+                'piedra': 'tijera',
+                'papel': 'piedra',
+                'tijera': 'papel'
+            };
+            if (reglas[eleccionJugador] === eleccionMaquina) {
+                victorias++;
+                return "Ganaste";
+            } else {
+                derrotas++;
+                return "Perdiste";
+            }
+        }
+
+        // Función principal para manejar el juego
+        function jugar(eleccionJugador) {
+            // Obtener la selección de la máquina
+            const eleccionMaquina = maquinaSeleccion();
+
+            // Mostrar las selecciones
+            mostrarSeleccion('mano', eleccionJugador);
+            mostrarSeleccion('mano2', eleccionMaquina);
+
+            // Determinar y mostrar el resultado
+            const resultado = determinarGanador(eleccionJugador, eleccionMaquina);
+            resultadoDiv.textContent = resultado;
+
+            // Actualizar contadores
+            juegosJugados++;
+            document.getElementById('juegos-jugados').textContent = juegosJugados;
+            document.getElementById('victorias').textContent = victorias;
+            document.getElementById('empates').textContent = empates;
+            document.getElementById('derrotas').textContent = derrotas;
+        }
+
+        // Event listeners para los botones
+        piedraBtn.addEventListener("click", () => jugar("piedra"));
+        papelBtn.addEventListener("click", () => jugar("papel"));
+        tijeraBtn.addEventListener("click", () => jugar("tijera"));
+
+        // Botón para refrescar el juego
+        retornoBtn.addEventListener("click", () => {
+            mano.innerHTML = "<img src='https://www.gifss.com/cuerpo-humano/manos/images/mano-6.gif'>";
+            mano2.innerHTML = "<img src='https://i.gifer.com/3nRF.gif'>";
+            resultadoDiv.textContent = "";
+            document.getElementById('juegos-jugados').innerHTML = ""
+            document.getElementById('victorias').innerHTML = ""
+            document.getElementById('empates').innerHTML = ""
+            document.getElementById('derrotas').innerHTML = ""
+            juegosJugados = "";
+            empates = "";
+            victorias = "";
+            derrotas = "";
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+
+    var array = [];
+
+
+
+
+
+    for (var i = 0; i < 3; i++) {
+      var elemento = prompt("ingrese el elemento" + (i + 1));
+      array.push(parseInt(elemento||0));
+    }
+
+    var numeromayor=array[0];
+
+    for(var i=0;i<array.length;i++){
+
+     if(array[i]>numeromayor){
+        
+      numeromayor=array[i];
+     }
+   
+    }
+
+    alert(" el numero mayor es : "+numeromayor);
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
