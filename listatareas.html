@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    td {
+        color: crimson;
+        font-family: cursive;
+        font-weight: bold;
+    }
+
+    table {
+        background-color: darkturquoise;
+        padding: 1rem;
+        margin: 5px;
+        font-size: 20px;
+        width: 40%;
+
+    }
+
+    tr {
+        background-color: aqua;
+
+    }
+
+    .container {
+        background-color: aqua;
+    }
+</style>
+
+<body>
+    <table id="tabla">
+        <thead>
+            <td style="text-align: center;">Lista de Tareas</td>
+        </thead>
+        <tr class="Table">
+            <td>
+                <input type="button" value="➕" class="agregar" id="agregar1">
+                <input type="button" value="🗑️" class="borrar" id="borrar1">
+                <input type="checkbox">
+                <span id="contenedor" class="container"></span> <span id="button1"></span>
+            </td>
+
+        </tr>
+        <tr class="Table">
+            <td class="Table">
+                <input type="button" value="➕" class="agregar" id="agregar2">
+                <input type="button" value="🗑️" class="borrar" id="borrar2">
+                <input type="checkbox">
+                <span id="contenedor2" class="container"></span> <span id="button2"></span>
+            </td>
+        </tr>
+        <tr class="Table">
+            <td class="Table">
+                <input type="button" value="➕" class="agregar" id="agregar3">
+                <input type="button" value="🗑️" class="borrar" id="borrar3">
+                <input type="checkbox">
+                <span id="contenedor3" class="container"></span> <span id="button3"></span>
+            </td>
+        </tr>
+
+
+
+
+
+    </table>
+
+
+
+    <script>
+
+        //creamos un text area y un input que utlizaremos en la funcion agregar
+        let textarea = document.createElement('textarea');
+        let button = document.createElement('input');
+        //llamamos alas clases agregar y borrar para poder recorrer cada
+        //boton con las variabes botones y botones2
+        let botones = document.getElementsByClassName('agregar');
+        let botones2 = document.getElementsByClassName('borrar');
+        //creamos un for para iterar sobre cada boton con ayuda de la variable
+        //boton
+        //si i es igual a 0, y si i es menor a la lista de clases que tengo en
+        // la variable botones entonces i ira incrementando
+        for (let i = 0; i < botones.length; i++) {
+            //si tengo la variable botones en la posicion i (osea en la posicion 1)
+            //este llamara al evento click y en los botones me desencadenara 
+            //la funcion agregar, cada vez que haga click 
+            botones[i].addEventListener('click', agregar);
+        }
+        //creamos un for para iterar sobre cada boton con ayuda de la variable
+        //boton
+        //si i es igual a 0, y si i es menor a la lista de clases que tengo en
+        // la variable botones2 entonces i ira incrementando
+        for (let i = 0; i < botones2.length; i++) {
+            //si tengo la variable botones2 en la posicion i (osea en la posicion 1)
+            //este llamara al evento click y en los botones me desencadenara 
+            //la funcion borrar, cada vez que haga click 
+            botones2[i].addEventListener('click', borrar);
+
+        }
+        //creo la funcion agregar con el parametro e que sera el evento del boton
+        function agregar(e) {
+            //llamo al text area adentro de la funcion
+            //le doy una fila y 20 columnas esto para que sea ancho
+            let textarea = document.createElement('textarea');
+            textarea.rows = 1;
+            textarea.cols = 20;
+            //le doy un id llamado keep
+            textarea.id = "keep";
+            //y le doy un place holder para que por dentro me diga escribe aqui
+            textarea.placeholder = "escribe aqui....";
+            //creo una variable donde me guarde el id del evento e que obtenemos
+            //con ayuda de target 
+            let id = e.target.id;
+            //si el id es igual a agregar1(osea el id del primer boton)
+            if (id == 'agregar1') {
+                //entonces agrego el text area al primer contenedor hijo llamando desde el dom
+                //con su id correspondiente
+                document.getElementById('contenedor').appendChild(textarea);
+                //enacadeno lo siguiente si el id es igual a egregar2
+            } else if (id == 'agregar2') {
+                //entonces agrego el text area al segundo contenedor
+                document.getElementById('contenedor2').appendChild(textarea);
+                //aca repetimos
+            } else if (id == 'agregar3') {
+                //y repetimos
+                document.getElementById('contenedor3').appendChild(textarea);
+            }
+            //llamamos al input dentro de la variable button
+            let button = document.createElement('input');
+            //le damos un tipo boton
+            button.type = 'button';
+            //le llamamos guardar como clase a cada boton
+            button.className = 'guardar';
+            //le dy un valor al input es decir 
+            //le digo que quiero que se muestre una carpeta dentro de el
+            button.value = '📂​';
+            //si el id es igual agregar1
+            if (id == 'agregar1') {
+                //entonces agrego al contenedor hijo button1 el button que cree
+                document.getElementById('button1').appendChild(button);
+                //encadeno y repito 
+            } else if (id == 'agregar2') {
+                //repito con contenedor button2
+                document.getElementById('button2').appendChild(button);
+                //encadeno y repito
+            } else if (id == 'agregar3') {
+                //repito con contenedor button3
+                document.getElementById('button3').appendChild(button);
+            }
+            //con el evento e le digo que me remueva ala esucha del click
+            //ala funcion agregar esto se hace para que no me agrege input y botones
+            //solo una vez 
+            e.target.removeEventListener('click', agregar);
+            //con ayuda de la variable button le digo dentro de la funcion agregar
+            //que este ala escucha de la siguiente funcion
+            button.addEventListener('click', function () {
+                //en la variable content guardo el valor del textarea
+                //con ayuda de value esto lo hago para guardar lo que introduzca el usuario
+                let content = textarea.value;
+                //si content es igual a un string vacio(si el usuario no  escribe nada)
+                if (content == "") {
+                    //entonces mando mensaje por consola diciendo
+                    //que no hay nada
+                    console.log("el contenido esta vacio");
+                    //y retorno  
+                    return;
+                }
+                //con ayuda de local storage establecemos un elemento
+                //con set item le ponbemos de nombre guar para llamarlo mas adelante
+                localStorage.setItem("guar", content);
+                //creamos un tr en la variable con este mismo nombre
+                let tr = document.createElement('tr');
+                //le ponemos de nombre table
+                tr.className = ("Table");
+                //creamos un td con este mismo nombre en la variable
+                let td = document.createElement('td');
+                //le pongo table de nombre ala clase
+                td.className = ("Table");
+                //creo un input mismo y le pongo de nombre checkbox en la variable
+                let checkbox = document.createElement('input');
+                //y le pongo de tipo checkbox
+                checkbox.type = "checkbox";
+                //creo un text node y lo guardo en la varible texto
+                //dentro del text node guardo con ayuda del local storage lo que 
+                //escriban en el text area que guaarde en la variable content y que
+                //y que estableci con el nombre guar en el local storage
+                let texto = document.createTextNode(localStorage.getItem("guar"));
+                //agrego el td como hijo de tr
+                tr.appendChild(td);
+                //agrego el texto como hijo de td
+                td.appendChild(texto);
+                //y agrego tambien el checkbox como hijo de td
+                td.appendChild(checkbox);
+                //llamo al id tabla y lo guardo en la variable tabla 
+                let tabla = document.getElementById('tabla');
+
+
+                if(tabla.firstChild){
+                   tabla.insertBefore(tr,tabla.firstChild)
+                }else{
+                 tabla.appendChild(tr);
+                }                    
+                //incializo el text area para que cada vez que guarde la tarea
+                //me borre lo que ya puse en el textarea
+                textarea.value = "";
+            });
+        }
+        //creo la funcion borrar con el parametro e que sera el evento de la funcion
+        function borrar(e) {
+            let id = e.target.id;
+
+            // Remover el último textarea y el botón correspondiente
+            if (id === 'borrar1') {
+                let contenedor = document.getElementById('contenedor');
+                if (contenedor.lastChild) {
+                    contenedor.removeChild(contenedor.lastChild);
+                    document.getElementById('button1').removeChild(document.getElementById('button1').lastChild);
+                    document.getElementById('agregar1').addEventListener('click', agregar); // Reactivar el botón
+                }
+            } else if (id === 'borrar2') {
+                let contenedor2 = document.getElementById('contenedor2');
+                if (contenedor2.lastChild) {
+                    contenedor2.removeChild(contenedor2.lastChild);
+                    document.getElementById('button2').removeChild(document.getElementById('button2').lastChild);
+                    document.getElementById('agregar2').addEventListener('click', agregar); // Reactivar el botón
+                }
+            } else if (id === 'borrar3') {
+                let contenedor3 = document.getElementById('contenedor3');
+                if (contenedor3.lastChild) {
+                    contenedor3.removeChild(contenedor3.lastChild);
+                    document.getElementById('button3').removeChild(document.getElementById('button3').lastChild);
+                    document.getElementById('agregar3').addEventListener('click', agregar); // Reactivar el botón
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
