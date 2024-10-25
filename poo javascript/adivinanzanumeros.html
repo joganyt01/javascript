@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        margin: 5px;
+        padding: 0.5rem;
+    }
+
+    .boton {
+        margin: 5px;
+        padding: 0.5rem;
+    }
+
+    .form {
+        background-color: black;
+        color: chartreuse;
+        font-family: 'Times New Roman', Times, serif;
+        padding: 2vh;
+        font-size: 15px;
+        font-weight: bold;
+
+    }
+
+    .form::placeholder {
+        color: chartreuse;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .submit {
+        background-color: darkorange;
+        border-radius: 8px;
+        border: 0px;
+        padding: 1vh;
+        font-family: cursive;
+        color: yellow;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    body {
+        background: linear-gradient(to right, green, black);
+    }
+
+    .h1 {
+        margin: 5px;
+        font-family: fantasy;
+        color: white;
+        font-size: 20px;
+    }
+
+    .contenedor {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .title {
+        font-family: fantasy;
+        color: white;
+    }
+
+    .warning {
+
+        color: crimson;
+        font-family: cursive;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <h1 class="title">
+        Numeros Aleatorios Johan Yt
+    </h1>
+    <div id="container" class="container">
+
+    </div>
+    <div id="error" class="warning"></div>
+    <div class="contenedor">
+        <div id="boton" class="boton">
+
+        </div>
+        <span id="reiniciar" class="boton">
+
+        </span>
+
+    </div>
+
+    <div class="h1" id="result">Resultados :</div>
+    <div id="attemps" class="h1">Numero de Intentos : 0</div>
+    <div class="h1" id="adivinar">Numero de Adivinanzas : 0</div>
+    <script>
+        let attemps = 0;
+        let adivinar = 0;
+        const numeros = 100;
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'form';
+        input.id = 'formulario';
+        input.placeholder = 'ingresa el numero aqui...';
+        let conatiner = document.getElementById('container');
+        conatiner.appendChild(input);
+
+        let button = document.createElement('input');
+        button.type = 'button';
+        button.className = 'submit';
+        button.value = 'Enviar';
+        let boton = document.getElementById('boton');
+        boton.appendChild(button);
+
+        let reboot = document.createElement('input');
+        reboot.type = 'button';
+        reboot.className = 'submit';
+        reboot.value = 'Reiniciar';
+        let reiniciar = document.getElementById('reiniciar');
+        reiniciar.appendChild(reboot);
+
+
+
+
+        let rnd = Math.floor(Math.random() * numeros) + 1;
+
+
+        button.addEventListener('click', entrada);
+        reboot.addEventListener('click', reintent);
+
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Previene el comportamiento por defecto
+                button.click(); // Simula un clic en el botón
+            }
+        });
+
+
+
+
+        function entrada() {
+            let valu = input.value.trim();
+
+            if (valu === '') {
+                attemps--; // Decrementa intentos
+                document.getElementById('attemps').innerHTML = ' Numero de Intentos : 0 ';
+                document.getElementById('result').innerHTML = ' Resultados :';
+                return; // Termina la función si el input está vacío
+            }
+
+            // Verificar si el valor no es un número
+            if (isNaN(valu)) {
+
+                document.getElementById('error').innerHTML = ' Error: Valor no válido';
+                document.getElementById('attemps').innerHTML = ' Numero de Intentos : 0 ';
+                return; // Termina la función si la entrada no es un número
+            }
+
+            // Convertimos el valor a número
+            valu = Number(valu);
+
+            // Compara con el número aleatorio
+            if (valu == rnd) {
+                adivinar++;
+                document.getElementById('result').innerHTML = ' Resultados: Estas en lo correcto es ' + rnd;
+                document.getElementById('adivinar').innerHTML = ' Numero de Adivinanzas: ' + adivinar;
+                document.getElementById('error').innerHTML = '';
+            } else if (valu > rnd) {
+                document.getElementById('result').innerHTML = ' Resultados: Es menor';
+                document.getElementById('error').innerHTML = '';
+            } else if (valu < rnd) {
+                document.getElementById('result').innerHTML = ' Resultados: Es mayor';
+                document.getElementById('error').innerHTML = '';
+            }
+
+            attemps++; // Aumenta el número de intentos
+            document.getElementById('attemps').innerHTML = ' Numero de Intentos: ' + attemps;
+
+        }
+
+        function reintent() {
+            document.getElementById('result').innerHTML = 'Resultados :';
+            attemps = 0;
+            document.getElementById('attemps').innerHTML = 'Numero de Intentos : 0';
+            input.value = 'ingresa el numero aqui...';
+            input.value = '';
+            rnd = Math.floor(Math.random() * numeros) + 1;
+           
+                input.focus();
+            
+        }
+
+        window.onload = function () {
+            input.focus();
+        };
+
+
+    </script>
+
+</body>
+
+</html>

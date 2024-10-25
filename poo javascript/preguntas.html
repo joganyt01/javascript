@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {
+        color: lightseagreen;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 900;
+        text-align: center;
+
+    }
+
+    body {
+        background: linear-gradient(to right, chartreuse, darkorange);
+
+    }
+
+    textarea {
+        text-align: center;
+        border-radius: 10px;
+        background: linear-gradient(to right, darkorange, crimson);
+        border: 0px;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 10px;
+    }
+
+    .boton {
+        border-radius: 10px;
+        background: linear-gradient(to right, darkorange, crimson);
+        border: 0px;
+        font-size: 15px;
+        padding: 1rem;
+        margin: 2px;
+        color: white;
+        font-family: cursive;
+        font-weight: bold;
+    }
+
+    .container-p {
+        text-align: center;
+    }
+
+    .container-s {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>
+        Play Question
+    </h1>
+    <div class="container-p" id="text">
+
+    </div>
+    <div class="container-s" id="botones">
+        <input type="button" value="1 año" class="boton">
+        <input type="button" value="5 años" class="boton">
+        <input type="button" value="3 años" class="boton">
+        <input type="button" value="2 años" class="boton">
+    </div>
+
+    <div class="container-p" id="text-s">
+
+    </div>
+    <div class="container-s" id="botont">
+        <input type="button" value="Oro" class="boton">
+        <input type="button" value="Oxigeno" class="boton">
+        <input type="button" value="Osmio" class="boton">
+        <input type="button" value="Oxido" class="boton">
+    </div>
+
+    <div class="container-p" id="text-t">
+
+    </div>
+    <div class="container-s" id="botonc">
+        <input type="button" value="Atlantico" class="boton">
+        <input type="button" value="Indico" class="boton">
+        <input type="button" value="Artico" class="boton">
+        <input type="button" value="Pacifico" class="boton">
+    </div>
+
+
+
+
+    <script>
+        let textarea = document.createElement('textarea');
+        textarea.rows = 5;
+        textarea.cols = 40;
+        textarea.value = '¿Cuanto es la vida util de un movil?'
+        let contenedor = document.getElementById('text');
+        contenedor.appendChild(textarea);
+
+        let textareas = document.createElement('textarea');
+        textareas.rows = 5;
+        textareas.cols = 40;
+        textareas.value = '¿Que elemento quimico tiene el simbolo O?'
+        let contenedores = document.getElementById('text-s');
+        contenedores.appendChild(textareas);
+
+        let textareap = document.createElement('textarea');
+        textareap.rows = 5;
+        textareap.cols = 40;
+        textareap.value = '¿Cual es el oceano mas grande del mundo?'
+        let contenedoret = document.getElementById('text-t');
+        contenedoret.appendChild(textareap);
+
+
+
+    </script>
+</body>
+
+</html>
